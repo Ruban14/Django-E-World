@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+ 
+{% block container %}
+    <div class="container cartlist">
+        <h1 class="text-center">
+           Your Orders
+            <br>
+
+        </h1><br>
+        <table class="table table-bordered" style="border-top: 3px solid orange;">
+            <thead>
+                <th>Product name</th>
+                <th>Cost</th>
+                <th>Image</th>
+            </thead> <div id="test-list">{% for row in products %}
+
+            <tr class="name">
+                <td><a href="/app/productDescription?productId={{row.0}}">{{ row.1 }}</a></td>
+                <td>Rs.{{ row.2 }}</td>
+                <td><img src="{{'/media/'}}{{ row.3 }}" width="25px;"></td>
+
+                {% endfor%}
+            </tr></div> <ul class="pagination"></ul>
+        </table>
+
+        <a href="/app/" onclick="myFunction()" class="btn btn-success btn-lg"> <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>&NonBreakingSpace;Return to Home Page </a>
+    </div>
+    <div class="container">
+        <div class="Row services">
+            <div class="col-sm-1">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+            </div>
+            <div class="col-sm-2">
+                <h2>Free Shipping</h2>
+            </div>
+            <div class="col-sm-1">
+                <i class="fa fa-umbrella" aria-hidden="true"></i>
+            </div>
+            <div class="col-sm-2">
+                <h2>24/7 support</h2>
+            </div>
+            <div class="col-sm-1">
+                <i class="fa fa-money" aria-hidden="true"></i>
+            </div>
+            <div class="col-sm-2">
+                <h2>Money Back Guarantee</h2>
+            </div>
+            <div class="col-sm-1">
+                <i class="fa fa-gift" aria-hidden="true"></i>
+            </div>
+            <div class="col-sm-2">
+                <h2>Free Gift Coupans</h2>
+            </div>
+        </div>
+    </div>
+<script>
+function myFunction() {
+    {% if noOfItems == 0 %}
+     alert(" Sorry Your cart is empty ")
+    {% endif %}
+}
+
+</script>
+
+{% endblock %}

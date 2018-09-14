@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+   {% load staticfiles %}
+    <link href="{% static   'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static   'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static   'font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container center-text">
+            <div class="row ">
+                <div class="col-md-3 text-center header-top">
+                    <a href="/app/">
+                        <i class="fa fa-home" aria-hidden="true"></i> Home
+                    </a>
+                </div>
+                <div class="col-md-3 text-center header-top">
+                    <a href="/app/product/">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Product
+                    </a>
+                </div>
+                <div class="col-md-3 text-center header-top">
+                    <a href="/app/login/">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i> Login
+                    </a>
+                </div>
+                <div class="col-md-3 text-center header-top">
+                    <div class="share" style="color:white">
+                        <i class="fa fa-facebook-square fb" aria-hidden="true"></i>&NonBreakingSpace;
+                        <i class="fa fa-twitter-square tw" aria-hidden="true"></i>&NonBreakingSpace;
+                        <i class="fa fa-tumblr-square tr" aria-hidden="true"></i>&NonBreakingSpace;
+                        <i class="fa fa-pinterest-square pt" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-two">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <form class="search-container">
+                        <input type="search" name="search" placeholder="Search here..." required="">
+                        <button type="submit">
+                            <i class="fa fa-search search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-6 logo">
+                    <h1 class="text-center">
+                        <a href="/app/">
+                            <strong style="color:black">
+                                E-WORLD
+                            </strong>
+                        </a>
+                    </h1>
+                </div>
+                <div class="col-md-3">
+                    <ul class="ul_two">
+                        <li>
+                            <a href="/app/cart"> Cart  {{ noOfItems }}</a>
+                        </li>
+                        <li>
+                            {% if not loggedIn %}
+                            <a href="/app/loginForm">
+                                <i class="fa fa-sign-in" aria-hidden="true"></i>Login</a>
+                            {% else %}
+                            <div class="dropdown">
+                                <p class="dropdown-toggle " id="drop" data-toggle="dropdown">Hi,{{ firstName }}<i class="fa fa-caret-down"></i></p>
+                                <div class="dropdown-menu" area-labelledby="drop">
+                                   
+                                        <ul>
+                                            <li>
+                                                <a class="dropdown-item btn text-center" href="/app/cart/">
+                                                    <span style="color:black">
+                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                        &NonBreakingSpace; Your Orders
+                                                        </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item btn" href="/app/account/profile">
+                                                    <span style="color:black">
+                                                        <i class="fa fa-user" aria-hidden="true"></i> &NonBreakingSpace; Your Profile
+                                                        </span>
+                                                </a>
+                                            </li>
+                                            <li style="position: relative;display: block;">
+                                                <a class="dropdown-item btn" href="/app/logout" class="btn btn-danger">
+                                                    <span style="color:black;">
+                                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                                        &NonBreakingSpace; Sign Out
+                                                        </span>
+                                                </a>
+                                            </li>
+                                   
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="border-bottom: 1px solid rgb(161, 159, 159)"></div>
+    <br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class="text-center text-active"><strong>CATEGORIES LIST</strong></h1>
+            {% for cat in catData %}
+            <div class="col-sm-2">
+                <a href="/app/displayCategory?categoryId={{cat.0}}">
+                    <img src="{{'/media/'}}{{ cat.2 }}" class="img-responsive img-thumbnail" width="200px" height="200px">
+                    <span style="margin-right:40px; font-size:22px;color:orange;"><strong>{{ cat.1}}</strong></span>
+                </a>
+            </div>
+            {% endfor %}<br>
+        </div>
+    </div>
+    <br>
+    <h1 class="text-center" style="text-shadow: 0 0 3px orange;"><b>ALL PRODUCTS</b></h1><br><br>
+    <div class="container">
+        <div class="row">{% for row in itemData %}
+            <div class="col-sm-3">
+               <a href="/app/productDescription?productId={{row.0}}"> <img class="img-responsive " width="250px" height="250px" src="{{'/media/'}}{{row.4}}">
+               </a><br>
+                <div style="border-style:outset" class="box">
+                <h2>{{ row.1 }}</h2>
+                <h3>Rs.{{ row.2 }}</h3>
+                <a class="btn btn-primary" href="/app/productDescription?productId={{row.0}}">More Details &NonBreakingSpace;
+                     <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        </a>
+                    <br>
+                    <br>
+            </div><br><br>
+            </div>
+           {% endfor %}
+        </div>
+    </div>
+    <div class="footer">
+        <div class="mySidenav" class="sidenav">
+            <a href="/app/" id="about">Home &NonBreakingSpace; &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </a>
+            <a href="/app/product/" id="blog">Products &NonBreakingSpace;
+                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+            </a>
+            <a href="/app/login/" id="projects">account &NonBreakingSpace;
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+            <a href="/app/cart/" id="contact">Cart Item&NonBreakingSpace;
+                <i class="fa fa-handshake-o" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="container-fluid foot-data">
+            <div class="row">
+                <div class="col-sm-3 foot-1">
+                    <div class="row">
+                        <a href="#">
+                            <strong class="text-left">
+                                <span style="color:orange">E</span>-W
+                                <i class="fa fa-power-off" aria-hidden="true"></i>RLD
+                            </strong>
+                        </a>
+                    </div>
+
+                    <div class="row">
+                        <p>
+                            This is the first website for online purchase of goods and services
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="foot-icon">
+                            <i class="fa fa-facebook-square fb" aria-hidden="true"></i>&NonBreakingSpace;
+                            <i class="fa fa-twitter-square tw" aria-hidden="true"></i>&NonBreakingSpace;
+                            <i class="fa fa-tumblr-square tr" aria-hidden="true"></i>&NonBreakingSpace;
+                            <i class="fa fa-pinterest-square pt" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 foot-2">
+                    <div class="row">
+                        <h2 class="text-center">
+                            <strong style="color:orange">OUR</strong> INFORMATION</h2>
+                    </div>
+                    <div class="row">
+                        <ul class="text-center">
+                            <li>Home</li>
+                            <li>Mobile Accessories</li>
+                            <li>Computer</li>
+                            <li>Smart Bands</li>
+                            <li>Earphones</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 foot-3" id="info">
+                    <div class="row">
+                        <h2 class="text-center">
+                            <strong style="color:orange">STORE</strong> INFORMATION</h2>
+                    </div>
+                    <div class="row">
+                        <p style="color:orange">
+                            <i class="fa fa-phone" aria-hidden="true"></i>Phone Number</p>
+                    </div>
+                    <div class="row">
+                        <p style="margin-left:170px;">+91 978 978 9789</p>
+                    </div>
+
+
+                    <br>
+                    <p style="color:orange">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>E-mail Address</p>
+                    <p style="margin-left:170px;">eworld@gmail.com</p>
+                </div>
+                <div class="col-md-3 foot-4" style="margin-top:70px; ">
+                    <h2 style="color: white">
+                        <strong style="color:orange">CUSTOMER</strong> RATING</h2>
+                    <br>
+                    <img src="{% static '/img/rating.png' %}">
+                </div>
+            </div>
+            <div class="row text-center">
+                <h1 style="color: white">ALL CARDS ACCEPTABLE</h1>
+                <img src="{% static '/img/payment.png' %}" width="70%">
+            </div>
+        </div>
+    </div>
+    <script src="{% static   'js/jquery.js') }}"></script>
+    <script src="{% static   'js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>

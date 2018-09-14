@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block container %}
+
+
+<div class="item active">
+    <div class="container text-center">
+       <h2><strong>Showing all products of Category <h1 style="color:orange">{{categoryName}}</h1></strong></h2>
+        <div class="row">{% for row1 in data %}{% for row in row1%}
+            <div class="col-sm-3">
+                <a href="/app/productDescription?productId={{row.0}}"><img class="img-responsive" width="250px" height="250px" src="{{'/media/'}}{{row.3}}"></a>
+<br>
+                <div style="border-style:outset" class="box">
+                    <h2>{{ row.1 }}</h2>
+                    <h3>{{ row.2 }}</h3>
+                    <a class="btn btn-primary" href="/app/productDescription?productId={{row.0}}">Add to Cart &NonBreakingSpace;
+                         <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                            </a>
+                        <br>
+                        <br>
+                </div><br><br>
+            </div>
+           {% endfor %}{% endfor %}
+        </div>
+    </div>
+     <!--<div class="container text-center">-->
+        <!--<div class="row">-->
+
+        <!--<div class="col-sm-3">{% for row in data %}-->
+
+            <!--<div id="productName">-->
+                <!--<h2 style="margin: 30px;"><strong>{{row.1}}</strong></h2>-->
+            <!--</div>-->
+            <!--<div id="productImage">-->
+                <!--<a class="catalog" href="/app/productDescription?productId={{row.0}}">-->
+                    <!--<img src="{{ '/media/' }}{{ row.3 }}" class= "img-thumbnail" width="200px" height="200px" id="itemImage" >-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div id="productPrice">-->
+                     <!--<h3 style="margin: 30px;color:orange">Price Rs.{{row.2}}</h3>-->
+            <!--</div> {% endfor %}-->
+        <!--</div>-->
+
+    <!--</div>-->
+    <!--</div>-->
+
+</div>
+{% endblock %}

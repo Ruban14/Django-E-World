@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style1.css' %}" rel="stylesheet">
+<style>
+    .addp:hover
+    {
+    background-color:yellow;
+    transition: box-shadow .1s;
+    box-shadow: 0 0 11px orange;
+    transition:.5s;
+    }
+
+    .delete:hover{
+    color:red;
+    }
+
+    .edit:hover{
+    color:black;
+
+    }
+    th{
+    text-align:center}
+</style>
+</head>
+<body>
+
+  <h1 class="text-center"> WELCOME ADMIN</h1>
+
+  <div class="dropdown text-right">
+       {% for wow in gata %}
+    <button class="btn dropdown-toggle" style=" color:black"type="button" data-toggle="dropdown">Hi, {{ wow.1 }}
+      {% endfor %}
+        <span class="caret "></span></button>
+    <ul class="dropdown-menu "style="float:right;margin-left:90%;">
+      <li><a href="/app/arecover/">EDIT PROFILE</a></li>
+      <li><a href="/app/logout1/">LOGOUT</a></li>
+    </ul>
+  </div>
+<h5>Select your options</h5>
+<form class="text-Left">
+    <label class="radio-inline container1">
+        <input type="radio" name="optradio" class="styled" value="products">Products
+        <span class="checkmark"></span>
+    </label>
+    <label class="radio-inline container1">
+        <input type="radio" name="optradio" class="styled" value="category">Category
+        <span class="checkmark"></span>
+    </label>
+</form>
+<br>
+
+<div class='area' id="products">
+    <div class="container">
+        <div class="addp">
+           <a href="/app/admin/" style="text-decoration:none;color:black;"> <b>NEW PRODUCTS</b>&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;<i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
+        </div><br>
+        <div class="table-hover">
+            <table  class="display table table-hover table-bordered table-responsive">
+                <thead>
+                <tr class="warning">
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category ID</th>
+                    <th>Details</th>
+                    <th>ACTIONS</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.0 }}</td>
+                    <td style="background-color:black"><img src="{{ '/media/' }}{{ row.5 }}" width=40px ,height=40px></td>
+                    <td>{{ row.1 }}</td>
+                    <td>{{ row.2 }}</td>
+                    <td>{{ row.4 }}</td>
+                    <td>{{ row.3 }}</td>
+                    <td><a href="/app/update/{{ row.0 }}"><span class="edit"><i class="fa fa-edit"></i></span></a> &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
+                        <a href=""><a href="/app/removeItem?productId={{ row.0 }}" class="delete"><i class="fa fa-trash"></i></a></a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class='area' id="category">
+    <div class="container">
+        <div class="addp">
+            <a href="/app/catadmin/"style="text-decoration:none;color:black;"><b>New Category</b>&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;<i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
+        </div><br>
+        <div class="table-hover">
+            <table id="myTable" class="display table table-hover table-bordered table-responsive">
+                <thead>
+                <tr class="warning text-center">
+                    <th>Category ID</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for mat in mata %}
+                <tr>
+                    <td>{{ mat.0 }}</td>
+                    <td style="background-color:black"><img src="{{ '/media/' }}{{ mat.2 }}" width=40px ,height=40px></td>
+                    <td>{{ mat.1 }}</td>
+                    <td><a href=""><a href="/app/removeItem?categoryId={{ mat.0 }}" class="delete"><i class="fa fa-trash"></i></a></a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+$('input[type=radio]').click(function(){
+    $('.area').hide();
+    $('#' + $(this).val()).show();
+});
+
+
+</script>
+</html>

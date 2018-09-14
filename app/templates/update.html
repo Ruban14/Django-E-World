@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E-world</title>
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/form.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
+</head>
+
+<body class="adder">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 text-center ">
+
+                <div class="container additem text-center">
+                    <h1 style="margin-top:-30px;padding-bottom:20px;">Update Item infomation</h1>
+                    <form method="POST" enctype="multipart/form-data" class="form block">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <input type="submit" name="ADD" class="btn btn-primary">
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+    </div>
+</body>

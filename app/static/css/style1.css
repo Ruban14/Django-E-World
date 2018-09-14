@@ -1,0 +1,106 @@
+/* The container */
+.container1 {
+    display: inline;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    text-transform: uppercase;
+    background:black;
+	background-size: fill;
+	background-position: center center;
+	background: url(../img/Testimonial-banner.jpg   )no-repeat 0px 0px;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color:white
+}
+label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}​
+ th,td{
+        font-size:18px;
+        text-align:center;s
+        }
+        .area{
+    display:none;
+
+    clear:both;
+}
+th{
+color:black;
+}
+tr:hover{
+color:black;
+}
+/* Hide the browser's default radio button */
+.container1 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container1:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container1 input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container1 input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container1 .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.addp{
+ border-radius: 25px;
+ background: orange;
+ color:black;
+ width:15%;
+ height:100%;
+ padding:10px;
+}

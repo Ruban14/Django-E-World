@@ -1,0 +1,53 @@
+input[type=text],input[type=number],input[type=checkbox] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: block;
+
+}
+
+label {
+   text-align:cener;
+   color:white;}
+
+
+select{margin-top:5px;
+        background-color:black;
+              border: solid 1px #black;
+              height: 30px;
+              font-size:16px;
+              vertical-align:9px;color:#black}
+
+input[type="submit"] {
+    background: #fff;
+    color: #000;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    padding: 9px 38px;
+    font-size: 14px;
+    margin-top: 55px;
+    font-weight: bold;
+    text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
+	transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -moz-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    -ms-transition: 0.3s all;
+}
+input[type="submit"]:hover{
+    background: red;
+	color:#ffffff;
+	transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -moz-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    -ms-transition: 0.3s all;
+}
+
+#id_name,#id_description,#id_price{
+color:white;}
+
